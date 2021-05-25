@@ -4,19 +4,17 @@ class Brainfuckcli {
     static Scanner sc;
     public static void main(String[] arg){
         sc = new Scanner(System.in);
-        int t= 10; 
         System.out.print(
                 "Welcome to BrainFuck interpreter!\n"+
                 "= Enter all programs in a single line =\n"
         );
-        while(t-->0){
+        while(true){
             System.out.print(">> ");
             String s = sc.nextLine();
             solver(s);
 
             System.out.println();
         }
-        System.out.println("GAME OVER");
 
     }
     static int size = 300001;

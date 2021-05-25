@@ -2,9 +2,13 @@ import java.util.*;
 
 class Brainfuckfile {
     static Scanner sc;
-    public static void main(String[] arg){
-        int t = Integer.parseInt(arg[0]);
-        //System.out.println(t);
+    static int argIndex = 0;
+    static char[] argsChar;
+    public static void main(String[] args){
+        int t = Integer.parseInt(args[0]);
+        if(args.length>1)
+            argsChar = args[1].toCharArray();
+
         sc = new Scanner(System.in);
         
         StringBuilder s = new StringBuilder("");
@@ -42,10 +46,12 @@ class Brainfuckfile {
                 arr[cur]--;
             }
             else if(s.charAt(idx)==','){
-                System.out.println(
-                        "Error! ',' is currently not supported in file mode, please try using cli instead"
-                );
-                return;
+                if(argsChar==null || argsChar.length==argIndex){
+                    System.out.println("Error at "+idx+"! Please pass arguments");
+                    return;
+                }
+                else
+                    arr[cur] = (int)argsChar[argIndex++];
 
             }
             else if(s.charAt(idx)=='.'){
@@ -57,7 +63,7 @@ class Brainfuckfile {
             }
             else if(s.charAt(idx)==']'){
                 if(stack.isEmpty()){
-                    System.out.println("Compilation error at "+cur+"! \nCheck for loops");
+                    System.out.println("Compilation error at "+cur+"! \nInvalid brackets");
                     return;
                 }
                 else{
@@ -69,6 +75,8 @@ class Brainfuckfile {
                     }
                 }
             }
+            // Uncomment for strict single line brainfuck check
+            
             //else{
             //    System.out.println("Compilation error at "+cur+"! \nInvalid syntax");
             //    return;
