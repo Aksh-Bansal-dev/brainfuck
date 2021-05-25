@@ -1,8 +1,9 @@
 import java.util.*;
 
 class Brainfuckcli {
+    static Scanner sc;
     public static void main(String[] arg){
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         int t= 10; 
         System.out.print(
                 "Welcome to BrainFuck interpreter!\n"+
@@ -26,7 +27,6 @@ class Brainfuckcli {
         int cur = 0;
         int idx = 0;
         int len=  s.length();
-        int pointer = -1;
         while(idx<len){
             if(s.charAt(idx)=='<'){
                 if(cur==0)cur =size-1;
@@ -47,7 +47,8 @@ class Brainfuckcli {
                 arr[cur]--;
             }
             else if(s.charAt(idx)==','){
-                pointer = cur;
+                int pointer = (int)sc.next().charAt(0);
+                arr[cur] = pointer;
             }
             else if(s.charAt(idx)=='.'){
                 System.out.print((char)arr[cur]);

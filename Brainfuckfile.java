@@ -20,7 +20,6 @@ class Brainfuckfile {
         int[] arr = new int[size];
         Stack<Integer> stack = new Stack<>();
         int cur = 0;
-        int pointer = -1;
         int idx = 0;
         int len=  s.length();
         while(idx<len){
@@ -43,7 +42,11 @@ class Brainfuckfile {
                 arr[cur]--;
             }
             else if(s.charAt(idx)==','){
-                pointer = cur;
+                System.out.println(
+                        "Error! ',' is currently not supported in file mode, please try using cli instead"
+                );
+                return;
+
             }
             else if(s.charAt(idx)=='.'){
                 System.out.print((char)arr[cur]);
